@@ -46,8 +46,13 @@ class UpdateCustomerRequest extends FormRequest
                 'state' => ['sometimes', 'required'],
                 'postalCode' => ['sometimes', 'required'],
             ]; 
+        } 
+    }
+    protected function prepareForValidation() {
+        if ($this->postalCode) {
+            $this->merge([
+                'postal_code' => $this->postalCode
+            ]);
         }
-        
-        
     }
 }
